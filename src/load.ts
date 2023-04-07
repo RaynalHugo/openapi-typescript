@@ -145,7 +145,12 @@ export default async function load(
           hint,
           schema: parseJSON(await res.text()),
         };
-      } else if (ext === ".yaml" || ext === ".yml" || contentType?.includes("yaml")) {
+      } else if (
+        ext === ".yaml" ||
+        ext === ".yml" ||
+        contentType?.includes("yaml") ||
+        contentType?.includes("application/vnd.oai.openapi")
+      ) {
         options.schemas[schemaID] = {
           hint,
           schema: parseYAML(await res.text()),
